@@ -30,8 +30,8 @@ services:
       context: ./dropbear
       dockerfile: Dockerfile
       args:
-        USER_PASSWORD: ${USER_PASSWORD}
-        USER_NAME: ${USER_NAME}
+        SSH_PASSWORD: ${SSH_PASSWORD}
+        SSHUSER: ${SSHUSER}
     hostname: dropbear-service
     environment:
       - USER_NAME=${USER_NAME}
