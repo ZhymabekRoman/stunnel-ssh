@@ -47,7 +47,7 @@ services:
     networks:
       - sslh-network
     ports:
-      - "0.0.0.0:7300:7300"
+      - "127.0.0.1:7300:7300"
     volumes:
       - ./udpgw/udpgw.json:/app/udpgw.json
     restart: always
