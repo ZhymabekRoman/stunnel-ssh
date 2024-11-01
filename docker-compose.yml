@@ -39,5 +39,13 @@ services:
     networks:
       - sslh-network
 
+  udpgw-service:
+    build:
+      context: ./udpgw
+      dockerfile: Dockerfile
+    hostname: udpgw-service
+    networks:
+      - sslh-network
+
 networks:
   sslh-network:
