@@ -1,0 +1,17 @@
+{
+  "LogLevel": "info",
+
+  "LogFilename": "",
+
+  "LogFileReopenRetries": null,
+
+  "LogFileCreateMode": 438,
+
+  "SkipPanickingLogWriter": false,
+
+  "HostID": "example-host-id",
+
+  "UdpgwPort": 7300,
+
+  "DNSResolverIPAddress": "8.8.8.8"
+}

@@ -19,9 +19,8 @@ COPY --from=builder /build/cmd/udpgw .
 RUN adduser -D udpgw
 USER udpgw
 
+COPY udpgw.json .
+
 EXPOSE 7300
-
-RUN ./udpgw -port 7300 generate
-
 ENTRYPOINT ["./udpgw"]
 CMD ["run"]

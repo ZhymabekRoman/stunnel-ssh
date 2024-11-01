@@ -10,6 +10,7 @@ services:
       - 443:8443
     volumes:
       - ./stunnel/stunnel.conf:/etc/stunnel/stunnel.conf
+    restart: always
 
   sslh-service:
     build:
@@ -23,7 +24,8 @@ services:
     environment:
       - DAEMON_OPTS=${DAEMON_OPTS}
     volumes:
-      - ./sslh/sslh.conf:/etc/default/sslh
+      - ./sslh/entrypoint.sh:/opt/sslh/entrypoint.sh
+    restart: always
 
   dropbear-service:
     build:
@@ -33,11 +35,9 @@ services:
         SSH_PASSWORD: ${SSH_PASSWORD}
         SSHUSER: ${SSHUSER}
     hostname: dropbear-service
-    environment:
-      - USER_NAME=${USER_NAME}
-      - USER_PASSWORD=${USER_PASSWORD}
     networks:
       - sslh-network
+    restart: always
 
   udpgw-service:
     build:
@@ -46,6 +46,9 @@ services:
     hostname: udpgw-service
     networks:
       - sslh-network
+    volumes:
+      - ./udpgw/udpgw.json:/app/udpgw.json
+    restart: always
 
 networks:
   sslh-network:
