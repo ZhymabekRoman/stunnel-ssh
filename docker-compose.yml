@@ -46,6 +46,8 @@ services:
     hostname: udpgw-service
     networks:
       - sslh-network
+    ports:
+      - "0.0.0.0:7300:7300"
     volumes:
       - ./udpgw/udpgw.json:/app/udpgw.json
     restart: always
