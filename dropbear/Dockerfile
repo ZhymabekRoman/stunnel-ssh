@@ -11,4 +11,4 @@ RUN apk --no-cache add dropbear &&\
     echo "$SSHUSER:$SSH_PASSWORD" | chpasswd &&\
     chown -R $SSHUSER:$SSHUSER /home/$SSHUSER
 
-CMD ["/usr/sbin/dropbear -RFEw -p 822"]
+CMD ["/usr/sbin/dropbear", "-RFEw", "-p", "822"]
