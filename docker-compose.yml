@@ -1,0 +1,43 @@
+services:
+  stunnel-service:
+    build:
+      context: ./stunnel
+      dockerfile: Dockerfile
+    hostname: stunnel-service
+    networks:
+      - sslh-network
+    ports:
+      - 443:8443
+    volumes:
+      - ./stunnel/stunnel.conf:/etc/stunnel/stunnel.conf
+
+  sslh-service:
+    build:
+      context: ./sslh
+      dockerfile: Dockerfile
+      args:
+        DAEMON_OPTS: ${DAEMON_OPTS}
+    hostname: sslh-service
+    networks:
+      - sslh-network
+    environment:
+      - DAEMON_OPTS=${DAEMON_OPTS}
+    volumes:
+      - ./sslh/sslh.conf:/etc/default/sslh
+
+  dropbear-service:
+    build:
+      context: ./dropbear
+      dockerfile: Dockerfile
+      args:
+        USER_PASSWORD: ${USER_PASSWORD}
+        USER_NAME: ${USER_NAME}
+    hostname: dropbear-service
+    environment:
+      - USER_NAME=${USER_NAME}
+      - USER_PASSWORD=${USER_PASSWORD}
+    networks:
+      - sslh-network
+
+networks:
+  sslh-network:
